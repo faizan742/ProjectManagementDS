@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "departmentName": "Admin Dep",
+        "contactNo": "03066956149",
+        "permissions": [
+            "isCreate",
+            "isDelete",
+            "isUpdate"
+        ],
+        "createdAt": "Fri Oct 27 2023 15:57:09 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    }
+]

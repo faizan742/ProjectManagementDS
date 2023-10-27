@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")();
 const fs = require('fs');
 let impdata = require("./data.js");
-
+let functionality = require('./adminfunctions.js');
 // console.log(impdata);
 // impdata['UserID']=impdata.UserID+1;
 
@@ -12,6 +12,7 @@ let impdata = require("./data.js");
 if(impdata.RunProgram==0){
     
     impdata['RunProgram']=impdata.RunProgram+1;
+    functionality.creataDep(impdata['DepID'],'Faizan Zia','03066956149',["isCreate","isDelete","isUpdate"]);
     
 }
 else
@@ -40,7 +41,8 @@ while(true){
                 process.exit(0);
                 break;
             case 1:
-              console.log( "Monday");
+              functionality.creataEmp(impdata['UserID']);
+              impdata['UserID']=impdata.UserID+1;
               break;
             case 2:
                console.log( "Tuesday")
