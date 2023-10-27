@@ -1,0 +1,14 @@
+{
+  "name": "projectmanagementds",
+  "version": "1.0.0",
+  "description": "This will contain the Final Project of Javascript It will explian the Maagement system of the Developer Studio",
+  "main": "home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
