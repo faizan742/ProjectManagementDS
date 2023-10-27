@@ -1,5 +1,23 @@
-const prompt=require("prompt-sync")();
+const prompt = require("prompt-sync")();
+const fs = require('fs');
+let impdata = require("./data.js");
 
+// console.log(impdata);
+// impdata['UserID']=impdata.UserID+1;
+
+
+
+
+
+if(impdata.RunProgram==0){
+    
+    impdata['RunProgram']=impdata.RunProgram+1;
+    
+}
+else
+{
+
+}
 while(true){
     console.log('Welcome To Developers Studio Employee Management System');
     console.log('1: Create Employee');
@@ -17,9 +35,10 @@ while(true){
 
     if (!isNaN(option)) {
         switch (option) {
-            case 0:
+            case 0:    
+                saveImpData();      
                 process.exit(0);
-              break;
+                break;
             case 1:
               console.log( "Monday");
               break;
@@ -45,5 +64,11 @@ while(true){
 
        console.log("You did not enter a valid integer.");
     }
+}
+function saveImpData(){
+    fs.writeFileSync('data.js',"module.exports=filedata=" +JSON.stringify(impdata, null, 4) , "utf-8",function (err) {
+        if (err) throw err;
+        console.log('Updated!');
+      });
 }
 
