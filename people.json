@@ -1,3 +1,40 @@
 [
-
+    {
+        "id": 1,
+        "name": "Faizan zia",
+        "age": 23,
+        "salary": 3000000,
+        "token": "AZuItBfsSVKn",
+        "contactDetails": [
+            {
+                "phone": "0306-6956149",
+                "address": "House no 1 Lahore"
+            }
+        ],
+        "permissions": [
+            "isCreate",
+            "isDelete",
+            "isUpdate"
+        ],
+        "departmentId": 1,
+        "createdAt": "Sat Oct 28 2023 20:34:52 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    },
+    {
+        "id": 2,
+        "name": "Zia",
+        "age": "21",
+        "salary": "20000",
+        "token": "kXGcHdudeF8H",
+        "contactDetails": [
+            {
+                "phone": "03066956148",
+                "address": "house no 1 lahore"
+            }
+        ],
+        "permissions": [],
+        "departmentId": [],
+        "createdAt": "Sat Oct 28 2023 20:36:32 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    }
 ]

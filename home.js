@@ -12,13 +12,19 @@ let functionality = require('./adminfunctions.js');
 if(impdata.RunProgram==0){
     
     impdata['RunProgram']=impdata.RunProgram+1;
-    functionality.creataDep(impdata['DepID'],'Faizan Zia','03066956149',["isCreate","isDelete","isUpdate"]);
-    
+    functionality.creataDep(impdata['DepID'],'Admin Dep','0425689741',["isCreate","isDelete","isUpdate"]);
+    adminobj={
+      "name":'Faizan zia',
+      "age":23,
+      "salary":3000000,
+      "contact":'0306-6956149',
+      "address":"House no 1 Lahore"
+    };
+    functionality.creataAdmin(impdata['UserID'],adminobj);
+    impdata['DepID'] = impdata.DepID+1;
+    impdata['UserID'] = impdata.UserID+1;
 }
-else
-{
 
-}
 while(true){
     console.log('Welcome To Developers Studio Employee Management System');
     console.log('1: Create Employee');
@@ -38,6 +44,7 @@ while(true){
         switch (option) {
             case 0:    
                 saveImpData();      
+                functionality.saveData();
                 process.exit(0);
                 break;
             case 1:

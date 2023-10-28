@@ -1,6 +1,7 @@
 const fs = require('fs');
 const prompt = require("prompt-sync")();
 let date=new Date();
+
 function generateRandomToken(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let token = '';
@@ -25,6 +26,7 @@ const readDep = () => {
 
 let peopleData = readPeople();
 let depData = readDep();
+
 let deplist  = depData.map((depname)=>{
     return{
         "Dep_Id":depname.id,
@@ -48,11 +50,12 @@ function creataDep(id,name,contact,permissions){
     deplist.push(name);
      
 }
+
 function creataEmp(ID){
    try {
     token=prompt("Please Enter Your Token of Verfication ");
     
-    if(token!=null){
+    if(token.length!=0){
     
     empname=prompt("Please Enter New Employee Name ");
     salary=prompt("Please Enter New Employee Salary ");
@@ -63,14 +66,14 @@ function creataEmp(ID){
     deplist.forEach(element => {
         console.log(element.Dep_name);
     });
-    //dep=prompt();
+    dep=prompt();
     depid=1;
-    // depid=deplist.filter((value)=>{
-    //     if(dep==value.Dep_name){
-    //         return dep.Dep_Id;
-    //     }
-    // });
-    emptoken='dfjhsjdkfhsjkdh8732489723897';
+    depid=deplist.filter((value)=>{
+        if(dep==value.Dep_name){
+            return dep.Dep_Id;
+        }
+    });
+    emptoken=generateRandomToken(12);
     people={
         "id": ID,
         "name": empname,
@@ -89,7 +92,7 @@ function creataEmp(ID){
         "updatedAt": ""
       };
       peopleData.push(people);
-      saveData();
+      console.log('THE Employee has Been Created')
 
     }else{
     console.log('You Are Not Autherizated To Make Employes');
@@ -99,9 +102,41 @@ function creataEmp(ID){
    } 
     
 }
+
 const saveData = () => {
-    //fs.writeFileSync('Dep.json', JSON.stringify(depData, null, 4));
+    fs.writeFileSync('Dep.json', JSON.stringify(depData, null, 4));
     fs.writeFileSync('people.json', JSON.stringify(peopleData, null, 4));
 };
 
-module.exports={creataDep,saveData,creataEmp};
+
+function creataAdmin(ID,adminobj){
+    try {
+     emptoken=generateRandomToken(12);
+     people={
+         "id": ID,
+         "name":adminobj.name,
+         "age": adminobj.age,
+         "salary":adminobj.salary,
+         "token":emptoken,
+         "contactDetails": [
+           {
+             "phone": adminobj.contact,
+             "address":adminobj.address
+           }
+         ],
+         "permissions":["isCreate","isDelete","isUpdate"],
+         "departmentId": 1,
+         "createdAt": date.toString(),
+         "updatedAt": ""
+       };
+       peopleData.push(people);
+       
+ 
+     
+    } catch (error) {
+     console.log(error);
+    } 
+     
+ }
+
+module.exports={creataDep,saveData,creataEmp,creataAdmin};
