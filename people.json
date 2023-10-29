@@ -13,8 +13,7 @@
         ],
         "permissions": [
             "isCreate",
-            "isDelete",
-            "isUpdate"
+            "isDelete"
         ],
         "departmentId": 1,
         "createdAt": "Sat Oct 28 2023 20:34:52 GMT+0500 (Pakistan Standard Time)",
@@ -32,9 +31,32 @@
                 "address": "house no 1 lahore"
             }
         ],
-        "permissions": [],
-        "departmentId": [],
+        "permissions": [
+            "isCreate",
+            "isDelete"
+        ],
+        "departmentId": 1,
         "createdAt": "Sat Oct 28 2023 20:36:32 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    },
+    {
+        "id": 4,
+        "name": "Ahmed",
+        "age": "28",
+        "salary": "20",
+        "token": "dfFWE5aFPG80",
+        "contactDetails": [
+            {
+                "phone": "03066956148",
+                "address": "Lahore"
+            }
+        ],
+        "permissions": [
+            "isCreate",
+            "isDelete"
+        ],
+        "departmentId": 2,
+        "createdAt": "Sun Oct 29 2023 20:15:33 GMT+0500 (Pakistan Standard Time)",
         "updatedAt": ""
     }
 ]

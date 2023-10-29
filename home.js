@@ -2,6 +2,7 @@ const prompt = require("prompt-sync")();
 const fs = require('fs');
 let impdata = require("./data.js");
 let functionality = require('./adminfunctions.js');
+
 // console.log(impdata);
 // impdata['UserID']=impdata.UserID+1;
 
@@ -55,10 +56,12 @@ while(true){
                console.log( "Tuesday")
               break;
             case 3:
-              console.log("Wednesday")
+              token=prompt("Please Enter Your Token ");
+              functionality.othercreataDep(impdata['DepID']);
+              impdata['DepID']=impdata.DepID+1;
               break;
             case 4:
-              console.log("Thursday");
+              functionality.AddPermission();
               break;
             case 5:
               console.log("Friday")
@@ -66,6 +69,9 @@ while(true){
             case  6:
               console.log("Saturday");
               break;
+              case  7:
+                functionality.showDetails();
+                break;  
             default:
                break;
           }

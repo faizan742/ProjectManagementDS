@@ -10,5 +10,17 @@
         ],
         "createdAt": "Sat Oct 28 2023 20:34:52 GMT+0500 (Pakistan Standard Time)",
         "updatedAt": ""
+    },
+    {
+        "id": 2,
+        "departmentName": "Hr Dep",
+        "contactNo": "042-563289",
+        "permissions": [
+            "isCreate",
+            "isDelete",
+            "isUpdate"
+        ],
+        "createdAt": "Sun Oct 29 2023 17:24:42 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
     }
 ]
