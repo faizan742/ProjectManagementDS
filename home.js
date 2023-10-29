@@ -53,7 +53,7 @@ while(true){
               impdata['UserID']=impdata.UserID+1;
               break;
             case 2:
-               console.log( "Tuesday")
+               functionality.UpdateEmp();
               break;
             case 3:
               token=prompt("Please Enter Your Token ");
@@ -64,12 +64,12 @@ while(true){
               functionality.AddPermission();
               break;
             case 5:
-              console.log("Friday")
+              functionality.RemovePermission();
               break;
             case  6:
-              console.log("Saturday");
+              functionality.DeleteEmployee();
               break;
-              case  7:
+            case  7:
                 functionality.showDetails();
                 break;  
             default:

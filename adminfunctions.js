@@ -1,3 +1,4 @@
+const { trace } = require('console');
 const fs = require('fs');
 const { prependOnceListener } = require('process');
 const prompt = require("prompt-sync")();
@@ -42,31 +43,40 @@ let deplist  = depData.map((depname)=>{
 });
 
 function checkToken(token){
-    check=false;
-    findpeople=peopleData.filter((people)=>{
+    try {
+        check=false;
+        findpeople=peopleData.filter((people)=>{
+            
+          if(token==people.token){
+            if(people["permissions"].includes('isCreate')==true){
+                check=true;
+            }
+            //return people;
+          }
+        });
+           return check;
         
-      if(token==people.token){
-        if(people["permissions"].includes('isCreate')==true){
-            check=true;
-        }
-        //return people;
-      }
-    });
-       return check;
+    } catch (error) {
+        console.log(error);
+    }
     }
 
 function creataDep(id,name,contact,permissions){
-    
-    dep= {
-       "id": id,
-       "departmentName": name,
-       "contactNo":contact,
-       "permissions": permissions,
-       "createdAt": date.toString(),
-       "updatedAt": ""
-     }
-    depData.push(dep);
-    deplist.push(name);
+    try {
+        dep= {
+            "id": id,
+            "departmentName": name,
+            "contactNo":contact,
+            "permissions": permissions,
+            "createdAt": date.toString(),
+            "updatedAt": ""
+          }
+         depData.push(dep);
+         deplist.push(name);
+    } catch (error) {
+        console.log(error);
+    }
+
      
 }
 
@@ -112,10 +122,12 @@ function creataEmp(ID){
         "updatedAt": ""
       };
       peopleData.push(people);
-      console.log('THE Employee has Been Created')
+      console.log('THE Employee has Been Created');
+      console.table(people); 
 
     }else{
     console.log('You Are Not Autherizated To Make Employes');
+    
     }
    } catch (error) {
     console.log(error);
@@ -212,96 +224,126 @@ else{
 
 
 function othercreataDep(id,token){
-    if(checkToken(token)==true){
-        depname=prompt("Please Enter New Departement Name ");
-        number=prompt("Please Enter  Contact Number ");
-        permissions=GavePermission('Departement');         
-        dep= {
-           "id": id,
-           "departmentName": depname,
-           "contactNo":number,
-           "permissions": permissions,
-           "createdAt": date.toString(),
-           "updatedAt": ""
-         }
-        depData.push(dep);
-        deplist.push({"Dep_Id":id,"Dep_name":depname,"permissions":permissions});
-    }else{
-        console.log("YOU DOES NOT HAVE PREMISSION TO MAKE Departement");
-    }     
+    try {
+        if(checkToken(token)==true){
+            depname=prompt("Please Enter New Departement Name ");
+            number=prompt("Please Enter  Contact Number ");
+            permissions=GavePermission('Departement');         
+            dep= {
+               "id": id,
+               "departmentName": depname,
+               "contactNo":number,
+               "permissions": permissions,
+               "createdAt": date.toString(),
+               "updatedAt": ""
+             }
+            depData.push(dep);
+            deplist.push({"Dep_Id":id,"Dep_name":depname,"permissions":permissions});
+        }else{
+            console.log("YOU DOES NOT HAVE PREMISSION TO MAKE Departement");
+        }
+        
+    } catch (error) {
+        console.log(error);
+    }
+     
 }
 
 function checkUpdatePermission(token){
-
-    findpeople=peopleData.filter((people)=>{
-      if(token==people.token){
-        return people;
-      }
-    });
-    //console.log(findpeople)
-    findpeople=findpeople[0];
-    return findpeople;
+     try {
+        findpeople=peopleData.filter((people)=>{
+            if(token==people.token){
+              return people;
+            }
+          });
+          //console.log(findpeople)
+          findpeople=findpeople[0];
+          return findpeople;
+      
+        
+     } catch (error) {
+        console.log(error);
+     }
     }
 
 function getDepID(depID){
-   Depname=deplist.filter((value)=>{
-    if(value.Dep_Id==depID){
-        return value.Dep_name;
+    try {
+        Depname=deplist.filter((value)=>{
+            if(value.Dep_Id==depID){
+                return value.Dep_name;
+            }
+           });
+           Depname=Depname.toString();
+           return Depname;
+        
+    } catch (error) {
+        console.log(error);
     }
-   });
-   Depname=Depname.toString();
-   return Depname;
+
 }
 function checkingPremission(deppre, perList){
-    for (const value of perList) {
-        if (!deppre.includes(value)) {
-          return false;
-        }
-      }
-      return true;
+    try {
+        for (const value of perList) {
+            if (!deppre.includes(value)) {
+              return false;
+            }
+          }
+          return true;
+        
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 function AddPermission(){
-    token=prompt("Enter The Editor Token ");
-    token2=prompt("Enter The Employee Token");
-    user1=checkUpdatePermission(token);
-    user2=checkUpdatePermission(token2);
-
-    user1dep=getDepID(user1.departmentId);
-    user2dep=getDepID(user2.departmentId);
-
+    try {
+        token=prompt("Enter The Editor Token ");
+        token2=prompt("Enter The Employee Token ");
+        user1=checkUpdatePermission(token);
+        user2=checkUpdatePermission(token2);
     
-    if((user1dep == "Hr Dep" || user1dep == "Admin Dep" || user1dep == user2dep) && user1.permissions.includes('isUpdate')==true){
-        deppre=[];
-        deplist.forEach((value)=>{
-            if(value.Dep_Id==user2.departmentId){
-                deppre=value.permissions;
-                console.log(value.permissions);
-            }
-
-        })
-           console.log("Please Write The Correct Spellings and place (,) after each permission and \n you can only gave the permission show above");
-           perList=prompt('Please Enter The Permission You want To gave ');
-           perList=perList.split(',');
-           perList=perList.filter(item => item.trim() !== '');
-           
-           const result = checkingPremission(deppre, perList);
-
-            if (result) {
-                for(let people of peopleData){
-                    if(people.ID==user2.ID){
-                        people['permissions']=perList;
-                    }
+        user1dep=getDepID(user1.departmentId);
+        user2dep=getDepID(user2.departmentId);
+    
+        
+        if((user1dep == "Hr Dep" || user1dep == "Admin Dep" || user1dep == user2dep) && user1.permissions.includes('isUpdate')==true){
+            deppre=[];
+            deplist.forEach((value)=>{
+                if(value.Dep_Id==user2.departmentId){
+                    deppre=value.permissions;
+                    console.log(value.permissions);
                 }
-            } else {
-            console.log("NO PreMission Added");
-            }
-
-
-    }else{
-        console.log('You can Not Add Permission')
+    
+            })
+               console.log("Please Write The Correct Spellings and place (,) after each permission and \n you can only gave the permission show above");
+               perList=prompt('Please Enter The Permission You want To gave ');
+               perList=perList.split(',');
+               perList=perList.filter(item => item.trim() !== '');
+               
+               const result = checkingPremission(deppre, perList);
+    
+                if (result) {
+                    for(let people of peopleData){
+                        if(people.id===user2.id){
+                            people['permissions']=perList;
+                        }
+                    }
+                } else {
+                console.log("NO PreMission Added");
+                }
+    
+    
+        }else{
+            console.log('You can Not Add Permission')
+        }
+        
+    } catch (error) {
+        console.log(error);
     }
+
 }
 function  DeleteEmployee(){
+    try {
     token=prompt("Enter The Editor Token ");
     token2=prompt("Enter The Employee Token");
     user1=checkUpdatePermission(token);
@@ -330,11 +372,140 @@ function  DeleteEmployee(){
             console.log('You can Not Delete Employee')
         }
     }
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+function RemovePermission(){
+    try {
+        token=prompt("Enter The Editor Token ");
+        token2=prompt("Enter The Employee Token ");
+        user1=checkUpdatePermission(token);
+        user2=checkUpdatePermission(token2);
+        
+        user1dep=getDepID(user1.departmentId);
+        user2dep=getDepID(user2.departmentId);
     
+        
+        if((user1dep == "Hr Dep" || user1dep == "Admin Dep" || user1dep == user2dep) && user1.permissions.includes('isUpdate')==true){
+            deppre=[];
+            console.log(user2.permissions);
+               console.log("Please Write The Correct Spellings and place (,) after each permission and \n You can only gave the permission show above");
+               perList=prompt('Please Enter The Permission You want To Remove ');
+               perList=perList.split(',');
+               perList=perList.filter(item => item.trim() !== '');
+               
+               const result = checkingPremission(user2.permissions, perList);
+    
+                if (result) {
+                    for(let value of perList){
+                        if(user2.permissions.includes(value)==true){
+                            index = user2.permissions.indexOf(value);
+                            user2.permissions.splice(index, 1);
+                        }
+                    }
+
+                    for(let people of peopleData){
+                        if(people.id==user2.id){
+                            people['permissions']=user2.permissions;
+                        }
+                    }
+                } else {
+                console.log("NO PreMission Added");
+                }
+    
+    
+        }else{
+            console.log('You can Not Add Permission')
+        }    
+    } catch (error) {
+        console.log(error);
+    }
     
 }
 
+function UpdateEmpValue(){
+    try {
+        upobj = {};
+        ans = prompt('Do you Want Update Employee Data  (y/n)');
+        if (ans == 'y' || ans == 'Y') {
+            ans = prompt('Do you Want Enter New name (y/n)');
+            if (ans == 'y' || ans == 'Y') {
+                ans = prompt('Please Enter the New Name');
+                upobj["name"] = ans;
+            }
+            ans = prompt('Do you Want Enter The Age (y/n)');
+            if (ans == 'y' || ans == 'Y') {
+                ans = prompt('Please Enter the New Age');
+                upobj["age"] = ans;
+            }
+            ans = prompt('Do you Want New Salary (y/n)');
+            if (ans == 'y' || ans == 'Y') {
+                ans = prompt('Please Enter the New Salary');
+                upobj["salary"] = ans;
+            }
+        
+            ans = prompt('Do you Want New Contact (y/n)');
+            if (ans == 'y' || ans == 'Y') {
+                upobj["contactDetails"] = {}; // Create the contactDetails object
+                ans = prompt('Please Enter the New Contact Number');
+                upobj["contactDetails"]["phone"] = ans;
+            }
+            
+            ans = prompt('Do you Want New Address (y/n)');
+            if (ans == 'y' || ans == 'Y') {
+                if (!upobj["contactDetails"]) {
+                    upobj["contactDetails"] = {}; // Create the contactDetails object if it doesn't exist
+                }
+                ans = prompt('Please Enter the New Address');
+                upobj["contactDetails"]["address"] = ans;
+            }
+        
+            //console.log(upobj);
+            return upobj;
+        } else {
+            console.log("No updates requested.");
+            return upobj;
+        }
+    } catch (error) {
+        console.log(error);
+    }
 
 
 
-module.exports={creataDep,saveData,creataEmp,creataAdmin,showDetails,othercreataDep,AddPermission,DeleteEmployee};
+    
+}
+
+function UpdateEmp(){
+    try {
+    token=prompt("Enter The Editor Token ");
+    token2=prompt("Enter The Employee Token ");
+    user1=checkUpdatePermission(token);
+    user2=checkUpdatePermission(token2);
+
+    user1dep=getDepID(user1.departmentId);
+    user2dep=getDepID(user2.departmentId);
+
+    
+    if((user1dep == "Hr Dep" || user1dep == "Admin Dep" || user1dep == user2dep) && user1.permissions.includes('isUpdate')==true){
+       upobj=UpdateEmpValue();
+       upobj["updatedAt"]=date.toString();
+       if(Object.keys(upobj).length != 0){
+        const personIndex = peopleData.findIndex((p) => p.id === user2.id);
+        if (personIndex !== -1) {
+            peopleData[personIndex] = { ...peopleData[personIndex], ...upobj };
+        }
+       }
+                           
+
+    }else{
+        console.log('You can Not Upadete This Employee')
+    }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+module.exports={creataDep,saveData,creataEmp,creataAdmin,showDetails,othercreataDep,AddPermission,DeleteEmployee,RemovePermission,UpdateEmp};

@@ -13,7 +13,8 @@
         ],
         "permissions": [
             "isCreate",
-            "isDelete"
+            "isDelete",
+            "isUpdate"
         ],
         "departmentId": 1,
         "createdAt": "Sat Oct 28 2023 20:34:52 GMT+0500 (Pakistan Standard Time)",
@@ -41,16 +42,14 @@
     },
     {
         "id": 4,
-        "name": "Ahmed",
+        "name": "Muh.Ahmed",
         "age": "28",
         "salary": "20",
         "token": "dfFWE5aFPG80",
-        "contactDetails": [
-            {
-                "phone": "03066956148",
-                "address": "Lahore"
-            }
-        ],
+        "contactDetails": {
+            "phone": "03062547891",
+            "address": "hfgashLahore"
+        },
         "permissions": [
             "isCreate",
             "isDelete"
