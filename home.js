@@ -58,7 +58,7 @@ while(true){
               break;
             case 3:
               token=prompt("Please Enter Your Token ");
-              functionality.othercreataDep(impdata['DepID']);
+              functionality.othercreataDep(impdata['DepID'],token);
               impdata['DepID']=impdata.DepID+1;
               break;
             case 4:
