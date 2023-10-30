@@ -35,6 +35,7 @@ while(true){
     console.log('5: Remove Employee Permissions');
     console.log('6: Delete Employee');
     console.log('7: Get Employee Details');
+    console.log('8: ALL Employee\'s Details');
     console.log('0: Exit')
 
     var op=prompt("Please Enter Your Option ");
@@ -71,7 +72,10 @@ while(true){
               break;
             case  7:
                 functionality.showDetails();
-                break;  
+                break;
+            case  8:
+              functionality.showALL();
+              break;       
             default:
                break;
           }

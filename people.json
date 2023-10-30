@@ -33,12 +33,11 @@
             }
         ],
         "permissions": [
-            "isCreate",
-            "isDelete"
+            "isCreate"
         ],
         "departmentId": 1,
         "createdAt": "Sat Oct 28 2023 20:36:32 GMT+0500 (Pakistan Standard Time)",
-        "updatedAt": ""
+        "updatedAt": "Mon Oct 30 2023 11:13:29 GMT+0500 (Pakistan Standard Time)"
     },
     {
         "id": 4,
@@ -51,8 +50,7 @@
             "address": "hfgashLahore"
         },
         "permissions": [
-            "isCreate",
-            "isDelete"
+            "isUpdate"
         ],
         "departmentId": 2,
         "createdAt": "Sun Oct 29 2023 20:15:33 GMT+0500 (Pakistan Standard Time)",
