@@ -42,7 +42,7 @@
     {
         "id": 4,
         "name": "Muh.Ahmed",
-        "age": "28",
+        "age": "98",
         "salary": "20",
         "token": "dfFWE5aFPG80",
         "contactDetails": {
@@ -54,7 +54,7 @@
         ],
         "departmentId": 2,
         "createdAt": "Sun Oct 29 2023 20:15:33 GMT+0500 (Pakistan Standard Time)",
-        "updatedAt": ""
+        "updatedAt": "Mon Oct 30 2023 15:44:24 GMT+0500 (Pakistan Standard Time)"
     },
     {
         "id": 5,
@@ -104,6 +104,23 @@
         "permissions": [],
         "departmentId": 2,
         "createdAt": "Mon Oct 30 2023 13:15:13 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    },
+    {
+        "id": 10,
+        "name": "Fawad",
+        "age": "23",
+        "salary": "54687",
+        "token": "lHeQTt8Ny3vT",
+        "contactDetails": [
+            {
+                "phone": "03065987451",
+                "address": "lahore"
+            }
+        ],
+        "permissions": [],
+        "departmentId": 4,
+        "createdAt": "Mon Oct 30 2023 15:40:07 GMT+0500 (Pakistan Standard Time)",
         "updatedAt": ""
     }
 ]

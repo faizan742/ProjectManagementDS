@@ -36,6 +36,7 @@ while(true){
     console.log('6: Delete Employee');
     console.log('7: Get Employee Details');
     console.log('8: ALL Employee\'s Details');
+    console.log('9: Show Activities ');
     console.log('0: Exit')
 
     var op=prompt("Please Enter Your Option ");
@@ -50,32 +51,42 @@ while(true){
                 process.exit(0);
                 break;
             case 1:
-              functionality.creataEmp(impdata['UserID']);
+
+              functionality.creataEmp(impdata['UserID'],impdata['Activity']);
               impdata['UserID']=impdata.UserID+1;
+              impdata['Activity']=impdata.Activity+1;
               break;
             case 2:
-               functionality.UpdateEmp();
+               functionality.UpdateEmp(impdata['Activity']);
+               impdata['Activity']=impdata.Activity+1;
               break;
             case 3:
               token=prompt("Please Enter Your Token ");
-              functionality.othercreataDep(impdata['DepID'],token);
+              functionality.othercreataDep(impdata['DepID'],token,impdata['Activity']);
               impdata['DepID']=impdata.DepID+1;
+              impdata['Activity']=impdata.Activity+1;
               break;
             case 4:
-              functionality.AddPermission();
+              functionality.AddPermission(impdata['Activity']);
+              impdata['Activity']=impdata.Activity+1;
               break;
             case 5:
-              functionality.RemovePermission();
+              functionality.RemovePermission(impdata['Activity']);
+              impdata['Activity']=impdata.Activity+1;
               break;
             case  6:
-              functionality.DeleteEmployee();
+              functionality.DeleteEmployee(impdata['Activity']);
+              impdata['Activity']=impdata.Activity+1;
               break;
             case  7:
                 functionality.showDetails();
                 break;
             case  8:
               functionality.showALL();
-              break;       
+              break;
+              case  9:
+                functionality.showactivity();
+                break;         
             default:
                break;
           }
