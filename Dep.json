@@ -25,7 +25,7 @@
     },
     {
         "id": 4,
-        "departmentName": "Dev drp",
+        "departmentName": "Dev dep",
         "contactNo": "042-789652",
         "permissions": [
             "isCreate",

@@ -102,6 +102,13 @@ function isName(input) {
     const namePattern = /^[a-zA-Z\s]+$/;
     return namePattern.test(input);
 }
+function pushActivity(id,text){
+    activitieslist.push({
+        "id":id,
+        "Activity":text,
+        "Date":date.toString(),
+      });
+}
 function isNumeric(input) {
     const numericPattern = /^-?\d*\.?\d+$/;
     return numericPattern.test(input);
@@ -166,12 +173,8 @@ function creataEmp(ID,activityID){
       peopleData.push(people);
       createpeople=checkUpdatePermission(token);
       
-      activitieslist.push({
-        "id":activityID,
-        "Activity":`The ${createpeople.name} has Created an Employee ${people.name}`,
-        "Date":date.toString(),
-      });
-
+      
+      pushActivity(activityID,text=`The ${createpeople.name} has Created an Employee ${people.name}`); 
       console.log('THE Employee has Been Created');
       console.table(people); 
 
@@ -296,11 +299,9 @@ function othercreataDep(id,token,activityID){
             deplist.push({"Dep_Id":id,"Dep_name":depname,"permissions":permissions});
             createpeople=checkUpdatePermission(token);
       
-            activitieslist.push({
-                "id":activityID,
-                "Activity":`The ${createpeople.name} has Created an Department ${depname}`,
-                "Date":date.toString(),
-            });
+            
+
+            pushActivity(activityID,text=`The ${createpeople.name} has Created an Department ${depname}`);
         }else{
             console.log("YOU DOES NOT HAVE PREMISSION TO MAKE Departement");
         }
@@ -400,11 +401,12 @@ function AddPermission(activityID){
                             
                         }
                     }
-                    activitieslist.push({
-                        "id":activityID,
-                        "Activity":`The ${user1.name} has Updated Premissions of  Employee ${user2.name}`,
-                        "Date":date.toString(),
-                      });
+                    // activitieslist.push({
+                    //     "id":activityID,
+                    //     "Activity":`The ${user1.name} has Updated Premissions of  Employee ${user2.name}`,
+                    //     "Date":date.toString(),
+                    //   });
+                    pushActivity(activityID,text=`The ${user1.name} has Updated Premissions of  Employee ${user2.name}`);
 
                 } else {
                 console.log("NO PreMission Added");
@@ -433,12 +435,13 @@ function  DeleteEmployee(activityID){
     if(user1dep.Dep_name=="Admin Dep" && user2dep.Dep_name=="Admin Dep"){
         if(user1.permissions.includes('isDelete')==true){
             peopleData = peopleData.filter(obj => obj.id !== user2.id);
-            console.log('Employee has Been Deleted');
-            activitieslist.push({
-                "id":activityID,
-                "Activity":`The ${user1.name} has Deleted an Employee ${user2.name}`,
-                "Date":date.toString(),
-              });
+            // console.log('Employee has Been Deleted');
+            // activitieslist.push({
+            //     "id":activityID,
+            //     "Activity":`The ${user1.name} has Deleted an Employee ${user2.name}`,
+            //     "Date":date.toString(),
+            //   });
+            pushActivity(activityID,text=`The ${user1.name} has Deleted an Employee ${user2.name}`);
         }else{
             console.log('Employee has not Been Deleted');
         }
@@ -450,12 +453,12 @@ function  DeleteEmployee(activityID){
         if((user1dep.Dep_name == "Hr Dep" || user1dep.Dep_name == "Admin Dep" || user1dep.Dep_name == user2dep) && user1.permissions.includes('isDelete')==true){
             peopleData = peopleData.filter(obj => obj.id !== user2.id);
             console.log('Employee has Been Deleted');
-            activitieslist.push({
-                "id":activityID,
-                "Activity":`The ${user1.name} has Deleted an Employee ${user2.name}`,
-                "Date":date.toString(),
-              });
-    
+            // activitieslist.push({
+            //     "id":activityID,
+            //     "Activity":`The ${user1.name} has Deleted an Employee ${user2.name}`,
+            //     "Date":date.toString(),
+            //   });
+              pushActivity(activityID,text=`The ${user1.name} has Deleted an Employee ${user2.name}`);    
         }else{
             console.log('You can Not Delete Employee')
         }
@@ -501,11 +504,12 @@ function RemovePermission(activityID){
                         }
                     }
 
-                    activitieslist.push({
-                        "id":activityID,
-                        "Activity":`The ${user1.name} has Removed The Premissions of Employee ${user2.name}`,
-                        "Date":date.toString(),
-                    });
+                    // activitieslist.push({
+                    //     "id":activityID,
+                    //     "Activity":`The ${user1.name} has Removed The Premissions of Employee ${user2.name}`,
+                    //     "Date":date.toString(),
+                    // });
+                    pushActivity(activityID,text=`The ${user1.name} has Removed The Premissions of Employee ${user2.name}`);
                 console.log('Employee has Been Updated');
             }
         }else{
@@ -540,6 +544,7 @@ function RemovePermission(activityID){
                                 people['updatedAt']=date.toString();
                             }
                         }
+                        pushActivity(activityID,text=`The ${user1.name} has Removed The Premissions of Employee ${user2.name}`);
                     } else {
                     console.log("NO PreMission Added");
                     }
@@ -626,12 +631,12 @@ function UpdateEmp(activityID){
             
         }
        }
-      activitieslist.push({
-        "id":activityID,
-        "Activity":`The ${user1.name} has Updated an Employee ${user2.name}`,
-        "Date":date.toString(),
-      });                    
-
+    //   activitieslist.push({
+    //     "id":activityID,
+    //     "Activity":`The ${user1.name} has Updated an Employee ${user2.name}`,
+    //     "Date":date.toString(),
+    //   });                    
+    pushActivity(activityID,text=`The ${user1.name} has Updated The Employee ${user2.name}`);
     }else{
         console.log('You can Not Upadete This Employee')
     }

@@ -8,5 +8,10 @@
         "id": 2,
         "Activity": "The Faizan zia has Updated an Employee Muh.Ahmed",
         "Date": "Mon Oct 30 2023 15:44:24 GMT+0500 (Pakistan Standard Time)"
+    },
+    {
+        "id": 3,
+        "Activity": "The Faizan zia has Created an Employee Haris",
+        "Date": "Mon Oct 30 2023 16:42:31 GMT+0500 (Pakistan Standard Time)"
     }
 ]

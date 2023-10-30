@@ -122,5 +122,22 @@
         "departmentId": 4,
         "createdAt": "Mon Oct 30 2023 15:40:07 GMT+0500 (Pakistan Standard Time)",
         "updatedAt": ""
+    },
+    {
+        "id": 11,
+        "name": "Haris",
+        "age": "25",
+        "salary": "85265",
+        "token": "OgA6yEVvGohH",
+        "contactDetails": [
+            {
+                "phone": "20301457855",
+                "address": "nothing,Lahore"
+            }
+        ],
+        "permissions": [],
+        "departmentId": 4,
+        "createdAt": "Mon Oct 30 2023 16:42:31 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
     }
 ]
