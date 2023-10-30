@@ -55,5 +55,55 @@
         "departmentId": 2,
         "createdAt": "Sun Oct 29 2023 20:15:33 GMT+0500 (Pakistan Standard Time)",
         "updatedAt": ""
+    },
+    {
+        "id": 5,
+        "name": "Ali",
+        "age": "23",
+        "salary": "20000",
+        "token": "OEPg2uqvx9aQ",
+        "contactDetails": [
+            {
+                "phone": "03066956149",
+                "address": "houe3,lahore"
+            }
+        ],
+        "permissions": [],
+        "departmentId": [],
+        "createdAt": "Mon Oct 30 2023 12:59:13 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    },
+    {
+        "id": 8,
+        "name": "Faizan zia",
+        "age": "4234234",
+        "salary": "2000",
+        "token": "PiHFV3XOdUbH",
+        "contactDetails": [
+            {
+                "phone": "03066956149",
+                "address": "lahore"
+            }
+        ],
+        "permissions": [],
+        "createdAt": "Mon Oct 30 2023 13:10:35 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
+    },
+    {
+        "id": 9,
+        "name": "ALi Ahmed",
+        "age": "25",
+        "salary": "564789",
+        "token": "VNxso62etTK0",
+        "contactDetails": [
+            {
+                "phone": "0306-6956149",
+                "address": "lahore"
+            }
+        ],
+        "permissions": [],
+        "departmentId": 2,
+        "createdAt": "Mon Oct 30 2023 13:15:13 GMT+0500 (Pakistan Standard Time)",
+        "updatedAt": ""
     }
 ]

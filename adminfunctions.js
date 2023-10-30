@@ -79,16 +79,38 @@ function creataDep(id,name,contact,permissions){
 
      
 }
-
+function isName(input) {
+    const namePattern = /^[a-zA-Z\s]+$/;
+    return namePattern.test(input);
+}
+function isNumeric(input) {
+    const numericPattern = /^-?\d*\.?\d+$/;
+    return numericPattern.test(input);
+}
 function creataEmp(ID){
    try {
     token=prompt("Please Enter Your Token of Verfication ");
     
     if(checkToken(token)==true){
-    
-    empname=prompt("Please Enter New Employee Name ");
-    salary=prompt("Please Enter New Employee Salary ");
-    age=prompt("Please Enter New Employee Age ");
+        
+        while(true){
+        empname=prompt("Please Enter New Employee Name ");
+        if(isName(empname)){
+           break;
+        }
+    }    
+        while(true){
+            salary=prompt("Please Enter New Employee Salary ");
+            if(isNumeric(salary)){
+            break;
+        }
+    }
+        while(true){
+            age=prompt("Please Enter New Employee Age ");
+            if(isNumeric(age)){
+               break;
+        }
+    }
     address=prompt("Please Enter New Employee Address ");
     contact=prompt("Please Enter New Employee Contact ");
     console.log("Please See The Gaven Below Departement List and Enter Name as gaven below");
@@ -96,11 +118,12 @@ function creataEmp(ID){
         console.log(element.Dep_name);
     });
     dep=prompt();
-    depid=1;
-    depid=deplist.filter((value)=>{
+    depid=0;
+    deplist.filter((value)=>{
         if(dep==value.Dep_name){
-            console.log(dep.Dep_Id);
-            return dep.Dep_Id;
+            //console.log(value.Dep_Id);
+            depid=value.Dep_Id
+            return value;
         }
     });
     emptoken=generateRandomToken(12);
