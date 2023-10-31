@@ -450,7 +450,7 @@ function  DeleteEmployee(activityID){
         console.log('YOU Can Not Delete an Admin ');
     }else
     {
-        if((user1dep.Dep_name == "Hr Dep" || user1dep.Dep_name == "Admin Dep" || user1dep.Dep_name == user2dep) && user1.permissions.includes('isDelete')==true){
+        if((user1dep.Dep_name == "Hr Dep" || user1dep.Dep_name == "Admin Dep" || user1dep.Dep_name == user2dep.Dep_name) && user1.permissions.includes('isDelete')==true){
             peopleData = peopleData.filter(obj => obj.id !== user2.id);
             console.log('Employee has Been Deleted');
             // activitieslist.push({
@@ -621,7 +621,7 @@ function UpdateEmp(activityID){
     user2dep=getDepID(user2.departmentId);
 
     
-    if((user1dep.Dep_name == "Hr Dep" || user1dep.Dep_name == "Admin Dep" || user1dep.Dep_name == user2dep) && user1.permissions.includes('isUpdate')==true){
+    if((user1dep.Dep_name == "Hr Dep" || user1dep.Dep_name == "Admin Dep" || user1dep.Dep_name == user2dep.Dep_name) && user1.permissions.includes('isUpdate')==true){
        upobj=UpdateEmpValue();
        upobj["updatedAt"]=date.toString();
        if(Object.keys(upobj).length != 0){
