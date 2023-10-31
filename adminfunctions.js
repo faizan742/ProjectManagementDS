@@ -288,6 +288,7 @@ function othercreataDep(id,token,activityID){
             number=prompt("Please Enter  Contact Number ");
             permissions=GavePermission('Departement');         
             dep= {
+                
                "id": id,
                "departmentName": depname,
                "contactNo":number,
